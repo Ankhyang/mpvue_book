@@ -1,6 +1,6 @@
 <template>
   <div id="swiper_div">
-    <swiper indicator-dots indicator-color="#cccccc" indicator-active-color="#4D79FF" circular>
+    <swiper indicator-dots indicator-color="#cccccc" indicator-active-color="#4D79FF" circular @change="handleChange">
       <swiper-item>
         <img src="/static/images/firstView/1.jpg" alt="">
       </swiper-item>
@@ -14,7 +14,7 @@
         <img src="/static/images/firstView/nvsheng.jpg" alt="">
       </swiper-item>
     </swiper> 
-    <button plain>开始体验</button>
+    <button v-show="index === 3" plain @click="navigateToIndex">开始体验</button>
   </div>
 </template>
 
@@ -22,7 +22,17 @@
 export default {
   data () {
     return {
-
+      index: 0
+    }
+  },
+  methods: {
+    handleChange (e) {
+      this.index = e.mp.detail.current
+    },
+    navigateToIndex () {
+      wx.navigateTo({
+        url: '/pages/index/main'
+      })
     }
   }
 }

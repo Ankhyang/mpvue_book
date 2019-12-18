@@ -1,10 +1,37 @@
 {
   "pages": [
-    "pages/firstView/main"
+    "pages/index/main",
+    "pages/bookList/main",
+    "pages/firstView/main",
+    "pages/searchBook/main",
+    "pages/personal/main",
+    "pages/detail/main"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#00F5B8",
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "豆瓣读书"
+  },
+  "tabBar":{
+    "list": [
+      {
+        "pagePath": "pages/index/main",
+        "text": "图书列表",
+        "iconPath": "/static/images/tabs/book.png",
+        "selectedIconPath": "/static/images/tabs/book-active.png"
+      },
+      {
+        "pagePath": "pages/searchBook/main",
+        "text": "搜索图书",
+        "iconPath": "/static/images/tabs/todo.png",
+        "selectedIconPath": "/static/images/tabs/todo-active.png"
+      },
+      {
+        "pagePath": "pages/personal/main",
+        "text": "个人中心",
+        "iconPath": "/static/images/tabs/me.png",
+        "selectedIconPath": "/static/images/tabs/me-active.png"
+      }
+    ]
   }
 }
