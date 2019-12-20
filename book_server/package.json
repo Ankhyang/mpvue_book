@@ -1,0 +1,13 @@
+{
+  "name": "book_server",
+  "version": "1.0.0",
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.11.0",
+    "koa-router": "^7.4.0",
+    "nodemon": "^2.0.2"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
+  }
+}

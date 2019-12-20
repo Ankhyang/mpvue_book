@@ -14,13 +14,16 @@
 
 <script type="text/javascript">
 export default {
+  props: ['bookArr'],
   data () {
     return {
       bookArr: []
     }
   },
   mounted () {
-    this.bookArr = JSON.parse(this.$mp.query.bookArr)
+    if (this.$mp) {
+      this.bookArr = JSON.parse(this.$mp.query.bookArr)
+    }
   },
   methods: {
     toDetail (item) {
