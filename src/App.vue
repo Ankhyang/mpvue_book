@@ -6,8 +6,12 @@ export default {
       success: async res => {
         // 1. 获取临时登录凭证
         let code = res.code
-        let token = await request('/getAppId', {code})
-        console.log(token)
+        let token = await request('/getOpenId', {code})
+        // 将token存入storage
+        await wx.setStorageSync('token', token)
+        // 获取验证后的token数据
+        let result = await request('/test')
+        console.log(result)
       }
     })
   }

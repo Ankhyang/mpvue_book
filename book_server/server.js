@@ -18,23 +18,33 @@ router.get('/', (ctx, next) => {
   ctx.body = '服务器返回的数据'
 })
 
-// 获取用户appId
-router.get('/getAppId', async (ctx, next) => {
+// 获取用户openId
+router.get('/getOpenId', async (ctx, next) => {
   // 获取请求参数
   let code = ctx.query.code
-  console.log(code)
   let appId = 'wxafcf120f30a43145'
   let appSecrect = '5408621cd277fc816c0640620ef9ecd6'
   let url = `https://api.weixin.qq.com/sns/jscode2session?appid=${appId}&secret=${appSecrect}&js_code=${code}&grant_type=authorization_code`
   let result = await fly.get(url)
   let userInfo = JSON.parse(result.data)
-  console.log(userInfo)
   // 将用户的openid和key存入token , 即自定义登录状态
-  var token = jwt.sign(userInfo, 'ankhYang')
-  console.log(token)
+  let token = jwt.sign(userInfo, 'ankhYang')
   ctx.body = token
 // eslint-disable-next-line no-trailing-spaces
 }) 
+
+// 验证token的准确性
+router.get('/test', (ctx, next) => {
+  let result
+  try {
+    let token = ctx.request.header.authorization
+    result = jwt.verify(token, 'ankhYang')
+    ctx.body = result
+  } catch (e) {
+    ctx.body = '验证失败'
+  }
+})
+
 let data = require('./datas/data.json')
 router.get('/searchBook', (ctx, next) => {
   // 获取请求参数
